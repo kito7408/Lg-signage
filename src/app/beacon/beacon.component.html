@@ -1,0 +1,61 @@
+<div class="conteiner">
+    <h2>Add Beacon</h2>
+    <div class="row">
+      <div class="col">
+        <div>
+          <label>Major:
+            <input #major />
+          </label>
+        </div>
+        <div>
+          <label>Minor:
+            <input #minor />
+          </label>
+        </div>
+        <div>
+          <label>Activo:
+            <select  #activo>
+              <option value="1">true</option>
+              <option value="0">false</option>
+            </select>
+          </label>
+        </div>
+  
+        <button class="btn btn-primary" 
+        (click)="save(major.value,minor.value,activo.value);
+        major.value='';minor.value='';">
+          Add
+        </button>
+      </div>
+  
+      <div class="col card" *ngIf="select">
+        <h2>Beacon Info</h2>
+        <ul>
+          <li><strong>Id:</strong> {{beacon.id}}</li>
+          <li><strong>UUID:</strong> {{beacon.UUID}}</li>
+          <li><strong>Major:</strong> {{beacon.major}}</li>
+          <li><strong>Minor:</strong> {{beacon.minor}}</li>
+          <li><strong>Activo:</strong> {{beacon.state}}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <h2>Beacon List</h2>
+  
+    <table class="table" *ngIf="beacons">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">UUID</th>
+        <th scope="col">Major</th>
+        <th scope="col">Minor</th>
+        <th scope="col">Activo</th>
+      </tr>
+      <tr *ngFor="let beacon of beacons.data" (click)="selectedItem(beacon.UUID)">
+        <td scope="row">{{beacon.id}}</td>
+        <td>{{beacon.UUID}}</td>
+        <td>{{beacon.major}}</td>
+        <td>{{beacon.minor}}</td>
+        <td>{{beacon.state}}</td>
+      </tr>
+    </table>
+  </div>

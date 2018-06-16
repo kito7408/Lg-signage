@@ -1,0 +1,46 @@
+<div class="conteiner">
+    <h2>Add Category</h2>
+    <div class="row">
+      <div class="col">
+        <div>
+          <label>Name:
+            <input #name />
+          </label>
+        </div>
+        <div>
+          <label>Description:
+            <input #description />
+          </label>
+        </div>
+  
+        <button class="btn btn-primary" 
+        (click)="save(name.value,description.value);
+        name.value='';description.value='';">
+          Add
+        </button>
+      </div>
+  
+      <div class="col card" *ngIf="select">
+        <h2>Category Info</h2>
+        <ul>
+          <li><strong>Name:</strong> {{category.name}}</li>
+          <li><strong>Description:</strong> {{category.description}}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <h2>Categories List</h2>
+  
+    <table class="table" *ngIf="categories">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+      <tr *ngFor="let category of categories.data" (click)="selectedItem(category.id)">
+        <td scope="row">{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td>{{category.description}}</td>
+      </tr>
+    </table>
+  </div>

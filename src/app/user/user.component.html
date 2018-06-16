@@ -1,0 +1,43 @@
+<div class="conteiner">
+    <h2>Add User</h2>
+    <div class="row">
+      <div class="col">
+        <div>
+          <label>Name:
+            <input #name />
+          </label>
+        </div>
+        <div>
+          <label>Last Name:
+            <input #lastName />
+          </label>
+        </div>
+        <button class="btn btn-primary" (click)="save(name.value,lastName.value); name.value=''; lastName.value='';">
+          Add
+        </button>
+      </div>
+  
+      <div class="col card" *ngIf="select">
+        <h2>User Info</h2>
+        <ul>
+          <li><strong>Name:</strong> {{user.name}}</li>
+          <li><strong>Last Name:</strong> {{user.description}}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <h2>Users List</h2>
+  
+    <table class="table" *ngIf="users">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+      </tr>
+      <tr *ngFor="let user of users.data" (click)="selectedItem(user.id)">
+        <td scope="row">{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.last_name}}</td>
+      </tr>
+    </table>
+  </div>

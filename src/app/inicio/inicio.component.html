@@ -1,0 +1,30 @@
+<div class="container text-center">
+  <div *ngIf="!userString">
+    <h1>Login</h1>
+    <div>
+      <label>Email:
+        <input #email />
+      </label>
+    </div>
+    <div>
+      <label>Password:
+        <input type="password" #password />
+      </label>
+    </div>
+    <div>
+      <button class="btn btn-success" 
+      (click)="login(email.value,password.value);
+      email.value='';password.value='';">
+        Login
+      </button>
+    </div>
+  </div>
+  <div *ngIf="userString">
+    <h1>User:</h1>
+    <h2>{{ userString }}</h2>
+    <button class="btn btn-danger"
+    (click)="logout();">
+      Logout
+    </button>
+  </div>
+</div>

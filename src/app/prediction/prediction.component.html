@@ -1,0 +1,57 @@
+<div class="conteiner">
+    <h2>Add Prediction</h2>
+    <div class="row">
+      <div class="col">
+        <div>
+          <label>User:
+            <input #user />
+          </label>
+        </div>
+        <div>
+          <label>Beacon:
+            <input #beacon />
+          </label>
+        </div>
+        <div>
+          <label>Product:
+            <select  #product  *ngIf="products">
+              <option *ngFor="let product of products.data" value="{{product.id}}">{{product.name}}</option>
+            </select>
+          </label>
+        </div>
+  
+        <button class="btn btn-primary" 
+        (click)="save(user.value,beacon.value,product.value);
+        user.value='';beacon.value='';">
+          Add
+        </button>
+      </div>
+  
+      <div class="col card" *ngIf="select">
+        <h2>Prediction Info</h2>
+        <ul>
+          <li><strong>Id:</strong> {{prediction.id}}</li>
+          <li><strong>User:</strong> {{prediction.user_id}}</li>
+          <li><strong>Beacon:</strong> {{prediction.beacon_id}}</li>
+          <li><strong>Product:</strong> {{prediction.product.name_id}}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <h2>Prediction List</h2>
+  
+    <table class="table">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">User</th>
+        <th scope="col">Beacon</th>
+        <th scope="col">Product</th>
+      </tr>
+      <tr *ngIf="prediction" (click)="selectedItem(prediction.id)"> <!--*ngFor="let prediction of predictions"-->
+        <td scope="row">{{prediction.id}}</td>
+        <td>{{prediction.user_id}}</td>
+        <td>{{prediction.beacon_id}}</td>
+        <td>{{prediction.product_id}}</td>
+      </tr>
+    </table>
+  </div>
