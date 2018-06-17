@@ -28,4 +28,17 @@ export class CategoryService {
     const newUrl = this.url + '/' + id;
     return this.http.get<Category>(newUrl,httpOptions);
   }
+
+  save(category: Category): Observable<Category> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': sessionStorage.getItem("token"),
+        'Content-Type': 'application/json'
+      })
+    };
+
+    const newUrl = this.url + '/create';
+    return this.http.post<Category>(newUrl,category,httpOptions)
+  }
 }

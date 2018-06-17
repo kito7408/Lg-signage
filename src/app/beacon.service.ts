@@ -36,4 +36,17 @@ export class BeaconService {
     const newUrl = this.url + uuid;
     return this.http.get<Beacon>(newUrl,httpOptions);
   }
+
+  save(beacon: Beacon):Observable<Beacon>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': sessionStorage.getItem("token"),
+        'Content-Type': 'application/json'
+      })
+    };
+
+    const newUrl = this.url + 'create';
+    return this.http.post<Beacon>(newUrl,beacon,httpOptions);
+  }
 }

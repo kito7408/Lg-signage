@@ -3,6 +3,11 @@
     <div class="row">
       <div class="col">
         <div>
+          <label>UUID:
+            <input #uuid />
+          </label>
+        </div>
+        <div>
           <label>Major:
             <input #major />
           </label>
@@ -22,8 +27,8 @@
         </div>
   
         <button class="btn btn-primary" 
-        (click)="save(major.value,minor.value,activo.value);
-        major.value='';minor.value='';">
+        (click)="save(uuid.value,major.value,minor.value,activo.value);
+        uuid.value='';major.value='';minor.value='';">
           Add
         </button>
       </div>

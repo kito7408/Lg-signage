@@ -37,10 +37,12 @@ export class BeaconComponent implements OnInit {
     });
   }
 
-  save(major: string, minor: string, state: string): void{
+  save(uuid: string, major: string, minor: string, state: string): void{
+    this.newBeacon.UUID=uuid;
     this.newBeacon.major=major;
     this.newBeacon.minor=minor;
     this.newBeacon.state=state;
-    console.log("New Beacon: ",this.newBeacon);
+    this.service.save(this.newBeacon)
+    .subscribe(data => this.getAll());
   }
 }

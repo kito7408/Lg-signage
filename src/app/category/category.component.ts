@@ -39,6 +39,7 @@ export class CategoryComponent implements OnInit {
   save(name: string, description: string): void{
     this.newCategory.name=name;
     this.newCategory.description=description;
-    console.log("New Category: ",this.newCategory);
+    this.service.save(this.newCategory)
+    .subscribe(data => this.getAll());
   }
 }
