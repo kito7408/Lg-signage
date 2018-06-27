@@ -8,21 +8,31 @@ import { Prediction } from './prediction';
 })
 export class PredictionService {
 
-  private url = 'http://35.231.37.9/api/predictions/';
+  //private url = 'http://35.231.37.9/api/predictions/';
+  private url = 'http://localhost:3000/predictions';
 
   constructor(private http: HttpClient) { }
 
-  getByUserId(): Observable<Prediction> {
+  getAll(): Observable<Prediction[]> {
+    return this.http.get<Prediction[]>(this.url);
+  }
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
+  getById(id: number): Observable<Prediction> {
+    const newUrl = this.url + '/' + id;
+    return this.http.get<Prediction>(newUrl);
+  }
 
-    const user_id = parseInt(sessionStorage.getItem("user_id"));
-    const newUrl = this.url + user_id;
-    return this.http.get<Prediction>(newUrl,httpOptions);
+  save(prediction: Prediction): Observable<Prediction> {
+    return this.http.post<Prediction>(this.url,prediction);
+  }
+
+  update(prediction: Prediction): Observable<Prediction> {
+    const newUrl = this.url + '/' + prediction.id;
+    return this.http.put<Prediction>(newUrl,prediction);
+  }
+
+  delete(id: number): Observable<Prediction> {
+    const newUrl = this.url + '/' + id;
+    return this.http.delete<Prediction>(newUrl);
   }
 }

@@ -36,9 +36,12 @@ export class UserComponent implements OnInit {
     });
   }
 
-  save(name: string, last_name: string){
+  save(name: string, email: string, phone_number: string, facebook: string){
     this.newUser.name=name;
-    this.newUser.last_name=last_name;
-    console.log("Nuevo Usuario:", this.newUser);
+    this.newUser.email=email;
+    this.newUser.phone_number=phone_number;
+    this.newUser.facebook=facebook;
+    this.service.save(this.newUser)
+    .subscribe(data => this.getAll());
   }
 }

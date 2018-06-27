@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <h2>Add Image</h2>
+  <div class="row">
+    <div class="col">
+      <div>
+        <label>Name:
+          <input #name />
+        </label>
+      </div>
+      <div>
+        <label>Url:
+          <input #url />
+        </label>
+      </div>
+      <div>
+        <label>Product:
+          <select  #product>
+            <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="btn btn-primary" 
+      (click)="save(name.value,url.value,product.value);
+      name.value='';url.value='';">
+        Add
+      </button>
+    </div>
+
+    <div class="col card" *ngIf="select">
+      <h2>Image Info</h2>
+      <ul>
+        <li><strong>Name:</strong> {{image.name}}</li>
+        <li><strong>Url:</strong> {{image.url}}</li>
+        <li><strong>Product:</strong> {{image.product.name}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Image List</h2>
+
+  <table class="table" *ngIf="images">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Product</th>
+    </tr>
+    <tr *ngFor="let image of images" (click)="selectedItem(image.id)">
+      <td scope="row">{{image.id}}</td>
+      <td>{{image.name}}</td>
+      <td>{{image.product.name}}</td>
+    </tr>
+  </table>
+</div>

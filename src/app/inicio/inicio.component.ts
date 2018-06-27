@@ -9,7 +9,7 @@ import { User } from '../user';
 })
 export class InicioComponent implements OnInit {
 
-  user: User;
+  /*user: User;
   userString: string;
   tokenString: string;
   token:{
@@ -17,15 +17,15 @@ export class InicioComponent implements OnInit {
     token_type: string;
   }
 
-  aux: any;
+  aux: any;*/
 
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.userString=sessionStorage.getItem("user");
+    //this.userString=sessionStorage.getItem("user");
   }
 
-  login(email: string,password: string):void{
+  /*login(email: string,password: string):void{
     this.service.login(email,password)
     .subscribe(data => {
       this.aux = data;
@@ -47,5 +47,5 @@ export class InicioComponent implements OnInit {
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("user_id");
     })
-  }
+  }*/
 }

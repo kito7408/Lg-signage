@@ -1,4 +1,4 @@
-<div class="conteiner">
+<div class="container-fluid">
     <h2>Add Beacon</h2>
     <div class="row">
       <div class="col">
@@ -33,15 +33,21 @@
         </button>
       </div>
   
-      <div class="col card" *ngIf="select">
+      <div class="col card text-center" *ngIf="select">
         <h2>Beacon Info</h2>
         <ul>
           <li><strong>Id:</strong> {{beacon.id}}</li>
-          <li><strong>UUID:</strong> {{beacon.UUID}}</li>
+          <li><strong>UUID:</strong> {{beacon.uuid}}</li>
           <li><strong>Major:</strong> {{beacon.major}}</li>
           <li><strong>Minor:</strong> {{beacon.minor}}</li>
-          <li><strong>Activo:</strong> {{beacon.state}}</li>
+          <li><strong>Activo:</strong> {{beacon.active}}</li>
         </ul>
+        <div>
+          <button class="btn btn-danger" 
+          (click)="delete(beacon.id);">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   
@@ -55,12 +61,12 @@
         <th scope="col">Minor</th>
         <th scope="col">Activo</th>
       </tr>
-      <tr *ngFor="let beacon of beacons.data" (click)="selectedItem(beacon.UUID)">
+      <tr *ngFor="let beacon of beacons" (click)="selectedItem(beacon.id)">
         <td scope="row">{{beacon.id}}</td>
-        <td>{{beacon.UUID}}</td>
+        <td>{{beacon.uuid}}</td>
         <td>{{beacon.major}}</td>
         <td>{{beacon.minor}}</td>
-        <td>{{beacon.state}}</td>
+        <td>{{beacon.active}}</td>
       </tr>
     </table>
   </div>

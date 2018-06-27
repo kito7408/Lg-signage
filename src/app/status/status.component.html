@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5 card text-center" *ngIf="status">
+      <h1>Status Info</h1>
+      <ul>
+        <li><strong>User:</strong> {{status.user.name}}</li>
+        <li><strong>Image:</strong> {{status.image.name}}</li>
+        <li><strong>State:</strong> {{status.state}}</li>
+      </ul>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-5 card text-center">
+      <h1>Update Status</h1>
+      <div>
+        <label>User: 
+          <select  #user>
+            <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>Image: 
+          <select  #image>
+            <option *ngFor="let image of images" value="{{image.id}}">{{image.name}}</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>State: 
+          <select  #state>
+            <option value="1">true</option>
+            <option value="0">false</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <button class="btn btn-primary" 
+        (click)="updateStatus(user.value,image.value,state.value);">
+        Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="conteiner">
+<div class="container-fluid">
     <h2>Add Category</h2>
     <div class="row">
       <div class="col">
@@ -38,7 +38,7 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
       </tr>
-      <tr *ngFor="let category of categories.data" (click)="selectedItem(category.id)">
+      <tr *ngFor="let category of categories" (click)="selectedItem(category.id)">
         <td scope="row">{{category.id}}</td>
         <td>{{category.name}}</td>
         <td>{{category.description}}</td>

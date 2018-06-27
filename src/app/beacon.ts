@@ -1,7 +1,7 @@
 export class Beacon{
     id: number;
-    UUID: string;
+    uuid: string;
     major: string;
     minor: string;
-    state: string;
+    active: number;
 }

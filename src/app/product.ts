@@ -6,6 +6,6 @@ export class Product {
     description: string;
     size: string;
     color: string;
-    category_id: number;
+    categoryId: number;
     images: Image[]
 }

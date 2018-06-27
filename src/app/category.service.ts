@@ -8,7 +8,8 @@ import { Category } from './category';
 })
 export class CategoryService {
 
-  private url = 'http://35.231.37.9/api/categories';
+  //private url = 'http://35.231.37.9/api/categories';
+  private url = 'http://localhost:3000/categories';
 
   constructor(private http: HttpClient) { }
 
@@ -17,28 +18,21 @@ export class CategoryService {
   }
 
   getById(id: number): Observable<Category> {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-
     const newUrl = this.url + '/' + id;
-    return this.http.get<Category>(newUrl,httpOptions);
+    return this.http.get<Category>(newUrl);
   }
 
   save(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.url,category);
+  }
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/json'
-      })
-    };
+  update(category: Category): Observable<Category> {
+    const newUrl = this.url + '/' + category.id;
+    return this.http.put<Category>(newUrl,category);
+  }
 
-    const newUrl = this.url + '/create';
-    return this.http.post<Category>(newUrl,category,httpOptions)
+  delete(id: number): Observable<Category> {
+    const newUrl = this.url + '/' + id;
+    return this.http.delete<Category>(newUrl);
   }
 }

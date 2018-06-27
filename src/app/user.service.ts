@@ -8,9 +8,9 @@ import { User } from './user';
 })
 export class UserService {
 
-  private url = '';
-  private logUrl = 'http://35.231.37.9/api/auth/login';
-  private logoutUrl = 'http://35.231.37.9/api/auth/logout';
+  private url = 'http://localhost:3000/users';
+  //private logUrl = 'http://35.231.37.9/api/auth/login';
+  //private logoutUrl = 'http://35.231.37.9/api/auth/logout';
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +27,7 @@ export class UserService {
     return this.http.get<User>(newUrl);
   }
 
-  login(email: string, password: string){
+  /*login(email: string, password: string){
     return this.http.post(this.logUrl, {email, password});
   }
 
@@ -41,5 +41,15 @@ export class UserService {
     };
 
     return this.http.get(this.logoutUrl,httpOptions);
+  }*/
+
+  update(user: User): Observable<User> {
+    const newUrl = this.url + '/' + user.id;
+    return this.http.put<User>(newUrl,user);
+  }
+
+  delete(id: number): Observable<User> {
+    const newUrl = this.url + '/' + id;
+    return this.http.delete<User>(newUrl);
   }
 }

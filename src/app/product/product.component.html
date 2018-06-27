@@ -1,4 +1,4 @@
-<div class="conteiner">
+<div class="container-fluid">
   <h2>Add Product</h2>
   <div class="row">
     <div class="col">
@@ -44,7 +44,7 @@
         <li><strong>Description:</strong> {{product.description}}</li>
         <li><strong>Size:</strong> {{product.size}}</li>
         <li><strong>Color:</strong> {{product.color}}</li>
-        <li><strong>Category:</strong> {{product.category_id}}</li>
+        <li><strong>Category:</strong> {{product.category.name}}</li>
         <li>
           <strong>Images:</strong>
           <ul>
@@ -64,11 +64,13 @@
       <th scope="col">Id</th>
       <th scope="col">Name</th>
       <th scope="col">Size</th>
+      <th scope="col">Category</th>
     </tr>
-    <tr *ngFor="let product of products.data" (click)="selectedItem(product.id)">
+    <tr *ngFor="let product of products" (click)="selectedItem(product.id)">
       <td scope="row">{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.size}}</td>
+      <td>{{product.category.name}}</td>
     </tr>
   </table>
 </div>

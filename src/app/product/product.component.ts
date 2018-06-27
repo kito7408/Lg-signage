@@ -17,7 +17,6 @@ export class ProductComponent implements OnInit {
   product: Product;
   newProduct: Product;
   categories: Category[];
-  aux: any;
 
   constructor(private service: ProductService, private categoryService: CategoryService) { }
 
@@ -33,7 +32,7 @@ export class ProductComponent implements OnInit {
     this.newProduct.name=name;
     this.newProduct.description=description;
     this.newProduct.color=color;
-    this.newProduct.category_id=parseInt(category);
+    this.newProduct.categoryId=parseInt(category);
     this.newProduct.size=size;
     this.service.save(this.newProduct)
     .subscribe(data => {
@@ -44,8 +43,7 @@ export class ProductComponent implements OnInit {
   getAllCategories(): void{
     this.categoryService.getAll()
     .subscribe(data => {
-      this.aux=data;
-      this.categories=this.aux.data;
+      this.categories=data;
     });
   }
 

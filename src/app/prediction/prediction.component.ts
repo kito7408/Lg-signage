@@ -3,6 +3,10 @@ import { Prediction } from '../prediction';
 import { PredictionService } from '../prediction.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { User } from '../user';
+import { Beacon } from '../beacon';
+import { UserService } from '../user.service';
+import { BeaconService } from '../beacon.service';
 
 @Component({
   selector: 'app-prediction',
@@ -16,20 +20,24 @@ export class PredictionComponent implements OnInit {
   prediction: Prediction;
   newPrediction: Prediction;
   products: Product[];
+  users: User[];
+  beacons: Beacon[];
 
-  constructor(private service: PredictionService, private productService: ProductService) { }
+  constructor(private service: PredictionService, private productService: ProductService, private userService: UserService, private beaconService: BeaconService) { }
 
   ngOnInit() {
-    this.select=false;
-    this.newPrediction=new Prediction;
     this.getAll();
     this.getAllProducts();
+    this.getAllBeacons();
+    this.getAllUsers();
+    this.select=false;
+    this.newPrediction=new Prediction;
   }
 
   getAll(): void {
-    this.service.getByUserId()
+    this.service.getAll()
     .subscribe(data => {
-      this.prediction=data;
+      this.predictions=data;
     });
   }
 
@@ -40,18 +48,33 @@ export class PredictionComponent implements OnInit {
     });
   }
 
-  /*selectedItem(id: number): void {
+  getAllUsers(): void {
+    this.userService.getAll()
+    .subscribe(data => {
+      this.users=data;
+    })
+  }
+
+  getAllBeacons(): void {
+    this.beaconService.getAll()
+    .subscribe(data => {
+      this.beacons=data;
+    })
+  }
+
+  selectedItem(id: number): void {
     this.service.getById(id)
     .subscribe(data => {
       this.prediction=data;
       this.select=true;
     });
-  }*/
+  }
 
   save(user: string, product: string, beacon: string){
-    this.newPrediction.user_id=parseInt(user);
-    this.newPrediction.product_id=parseInt(product);
-    this.newPrediction.beacon_id=parseInt(beacon);
-    console.log("New Prediction:",this.newPrediction);
+    this.newPrediction.userId=parseInt(user);
+    this.newPrediction.productId=parseInt(product);
+    this.newPrediction.beaconId=parseInt(beacon);
+    this.service.save(this.newPrediction)
+    .subscribe(data => this.getAll());
   }
 }

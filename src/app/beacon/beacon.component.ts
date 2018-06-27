@@ -28,21 +28,28 @@ export class BeaconComponent implements OnInit {
     .subscribe(data => this.beacons=data);
   }
 
-  selectedItem(uuid: string): void {
-    this.service.getById(uuid)
+  selectedItem(id: number): void {
+    this.service.getById(id)
     .subscribe(data => {
-      console.log(data);
       this.beacon=data;
       this.select=true;
     });
   }
 
-  save(uuid: string, major: string, minor: string, state: string): void{
-    this.newBeacon.UUID=uuid;
+  save(uuid: string, major: string, minor: string, active: string): void{
+    this.newBeacon.uuid=uuid;
     this.newBeacon.major=major;
     this.newBeacon.minor=minor;
-    this.newBeacon.state=state;
+    this.newBeacon.active=parseInt(active);
     this.service.save(this.newBeacon)
     .subscribe(data => this.getAll());
+  }
+
+  delete(id: number): void {
+    this.service.delete(id)
+    .subscribe(data => {
+      this.select=false;
+      this.getAll();
+    })
   }
 }

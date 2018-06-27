@@ -16,6 +16,9 @@ import { CategoryComponent } from './category/category.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { PredictionComponent } from './prediction/prediction.component';
 import { BeaconComponent } from './beacon/beacon.component';
+import { ImageComponent } from './image/image.component';
+import { StatusComponent } from './status/status.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { BeaconComponent } from './beacon/beacon.component';
     CategoryComponent,
     InicioComponent,
     PredictionComponent,
-    BeaconComponent
+    BeaconComponent,
+    ImageComponent,
+    StatusComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,

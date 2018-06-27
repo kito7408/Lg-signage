@@ -8,45 +8,31 @@ import { Beacon } from './beacon';
 })
 export class BeaconService {
 
-  private url = 'http://35.231.37.9/api/beacons/';
+  //private url = 'http://35.231.37.9/api/beacons/';
+  private url = 'http://localhost:3000/beacons';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Beacon[]>{
-    
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-
-    return this.http.get<Beacon[]>(this.url, httpOptions);
+    return this.http.get<Beacon[]>(this.url);
   }
 
-  getById(uuid: string): Observable<Beacon> {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-
-    const newUrl = this.url + uuid;
-    return this.http.get<Beacon>(newUrl,httpOptions);
+  getById(id: number): Observable<Beacon> {
+    const newUrl = this.url + '/' + id;
+    return this.http.get<Beacon>(newUrl);
   }
 
   save(beacon: Beacon):Observable<Beacon>{
+    return this.http.post<Beacon>(this.url,beacon);
+  }
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': sessionStorage.getItem("token"),
-        'Content-Type': 'application/json'
-      })
-    };
+  update(beacon: Beacon): Observable<Beacon> {
+    const newUrl = this.url + '/' + beacon.id;
+    return this.http.put<Beacon>(newUrl,beacon);
+  }
 
-    const newUrl = this.url + 'create';
-    return this.http.post<Beacon>(newUrl,beacon,httpOptions);
+  delete(id: number): Observable<Beacon> {
+    const newUrl = this.url + '/' + id;
+    return this.http.delete<Beacon>(newUrl);
   }
 }
