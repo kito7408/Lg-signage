@@ -25,7 +25,7 @@
         </div>
   
         <button class="btn btn-primary" 
-        (click)="save(user.value,beacon.value,product.value);">
+        (click)="save(user.value,product.value,beacon.value);">
           Add
         </button>
       </div>
@@ -38,6 +38,12 @@
           <li><strong>Beacon:</strong> {{prediction.beacon.uuid}}</li>
           <li><strong>Product:</strong> {{prediction.product.name}}</li>
         </ul>
+        <div class="text-center">
+          <button class="btn btn-danger" 
+          (click)="delete(prediction.id);">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   

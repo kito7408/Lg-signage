@@ -44,4 +44,12 @@ export class UserComponent implements OnInit {
     this.service.save(this.newUser)
     .subscribe(data => this.getAll());
   }
+
+  delete(id: number): void {
+    this.service.delete(id)
+    .subscribe(data => {
+      this.select=false;
+      this.getAll();
+    })
+  }
 }

@@ -59,4 +59,12 @@ export class ProductComponent implements OnInit {
       this.select = true;
     });
   }
+
+  delete(id :number): void {
+    this.service.delete(id)
+    .subscribe(data => {
+      this.select=false;
+      this.getAll();
+    })
+  }
 }

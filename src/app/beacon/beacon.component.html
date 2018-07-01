@@ -33,7 +33,7 @@
         </button>
       </div>
   
-      <div class="col card text-center" *ngIf="select">
+      <div class="col card" *ngIf="select">
         <h2>Beacon Info</h2>
         <ul>
           <li><strong>Id:</strong> {{beacon.id}}</li>
@@ -42,12 +42,12 @@
           <li><strong>Minor:</strong> {{beacon.minor}}</li>
           <li><strong>Activo:</strong> {{beacon.active}}</li>
         </ul>
-        <!--<div>
+        <div class="text-center">
           <button class="btn btn-danger" 
           (click)="delete(beacon.id);">
             Delete
           </button>
-        </div>-->
+        </div>
       </div>
     </div>
   

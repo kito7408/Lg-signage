@@ -27,6 +27,12 @@
           <li><strong>Name:</strong> {{category.name}}</li>
           <li><strong>Description:</strong> {{category.description}}</li>
         </ul>
+        <div class="text-center">
+          <button class="btn btn-danger" 
+          (click)="delete(category.id);">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   

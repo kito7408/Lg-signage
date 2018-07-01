@@ -36,6 +36,12 @@
           <li><strong>Phone:</strong> {{user.phone_number}}</li>
           <li><strong>Facebook:</strong> {{user.facebook}}</li>
         </ul>
+        <div class="text-center">
+          <button class="btn btn-danger" 
+          (click)="delete(user.id);">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   

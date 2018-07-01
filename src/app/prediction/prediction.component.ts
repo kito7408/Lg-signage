@@ -77,4 +77,12 @@ export class PredictionComponent implements OnInit {
     this.service.save(this.newPrediction)
     .subscribe(data => this.getAll());
   }
+
+  delete(id: number) :void {
+    this.service.delete(id)
+    .subscribe(data => {
+      this.select=false;
+      this.getAll();
+    })
+  }
 }
